@@ -10,7 +10,7 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" |  tee /etc/apt/source
 RUN apt-get update && \
     apt-get install -y yarn
 
-RUN npm install -g n 
+RUN npm install -g n serve
 
 RUN n 8.11.1
 
@@ -39,13 +39,14 @@ RUN echo $NB_USER " ALL=(ALL:ALL) ALL" >> /etc/sudoers
 
 RUN cat /etc/sudoers
 
-RUN git clone https://github.com/Dennitz/RockPaperScissorsLizardSpock.js.git /home/$NB_USER/Demo/RockPaperScissorsLizardSpock
+ENV Project xdog-sketch
 
-RUN cd /home/$NB_USER/Demo/RockPaperScissorsLizardSpock && yarn
+RUN git clone https://github.com/alexpeattie/xdog-sketch.git /home/$NB_USER/Demo/$Project
 
-RUN echo "cd /home/blackwalnut/Demo/RockPaperScissorsLizardSpock \n yarn start" >> /home/blackwalnut/Demo/RockPaperScissorsLizardSpock/start.sh
+RUN cd /home/$NB_USER/Demo/$Project && npm install
+
+RUN echo "cd /home/blackwalnut/Demo/"$Project" \nnpm start" >> /home/blackwalnut/Demo/$Project/start.sh
 
 RUN chmod -R 777 /home/blackwalnut/Demo/*
 
-CMD ["sh", "/home/blackwalnut/Demo/RockPaperScissorsLizardSpock/start.sh"]
-
+CMD ["sh", "/home/blackwalnut/Demo/xdog-sketch/start.sh"]

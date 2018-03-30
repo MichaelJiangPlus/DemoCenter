@@ -45,6 +45,6 @@ RUN cd /home/$NB_USER/Demo/teachable-machine && yarn && yarn build
 
 RUN echo "cd /home/blackwalnut/Demo/teachable-machine \n yarn run watch" >> /home/blackwalnut/Demo/teachable-machine/start.sh
 
-RUN chmod -R 777 /home/blackwalnut/Demo/teachable-machine/*
+RUN chmod -R 777 /home/blackwalnut/Demo/
 
 CMD ["sh", "/home/blackwalnut/Demo/teachable-machine/start.sh"]
