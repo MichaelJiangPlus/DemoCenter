@@ -1,0 +1,1 @@
+FROM ekholabs/face-classifier
